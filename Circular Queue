@@ -1,0 +1,106 @@
+#include<iostream>
+using namespace std;
+class DSA
+{
+    int circular_queue[50];
+    int f=-1;
+    int r=-1;
+    public:
+    void push(int x)
+    {
+        if(f==-1&&r==-1)
+        {
+            r=f=0;
+            circular_queue[r]=x;
+            cout<<circular_queue[r]<<" pushed successfully\n\a";
+        }
+        else if((r+1)%5==f)
+        {
+            cout<<"circular_queue is full\n\a";
+        }
+        else
+        {
+            r=(r+1)%5;
+            circular_queue[r]=x;
+            cout<<circular_queue[r]<<" pushed successfully\n\a";
+        }
+    }
+    void pop()
+    {
+        if(f==-1&&r==-1)
+        {
+            cout<<"Circular_queue is empty\n\a";
+        }
+            else if(r==f)
+        {
+            cout<<circular_queue[f]<<" is deleted\n\a";
+            r=f=-1;
+        }
+        else
+        {
+            cout<<circular_queue[f]<<" is deleted\n\a";
+            f=(f+1)%5;
+        }
+    }
+    void display()
+    {
+        if(f==-1&&r==-1)
+        {
+            cout<<"circular_queue is empty\n\a";
+        }
+        else
+        {
+            int i=f;
+            while(i!=r)
+            {
+                cout<<" "<<circular_queue[i];
+                i=(i+1)%5;
+            }
+            cout<<" \a"<<circular_queue[r];
+        }
+    }
+};
+int main()
+{
+    DSA d;
+  while(1)
+  {  
+    cout<<"\nENTER YOUR CHOICE\n\a";
+    cout<<"1.PUSH  \t2.POP  \t3.DISPLAY\t4.EXIT\n";
+    int ch;
+    cin>>ch;
+    switch(ch)
+    {
+        case 1:
+        {
+            int x;
+            cout<<"enter value to push\n\a";
+            cin>>x;
+            d.push(x);
+            break;
+        }
+        case 2:
+        {
+            d.pop();
+            break;
+        }
+        case 3:
+        {
+            d.display();
+            break;
+        }
+        case 4:
+        {
+            cout<<"PROGRAM SUCCESS\n\a";
+            exit(0);
+        }
+        default:
+        {
+            cout<<"Out of choice\n\a";
+            exit(0);
+        }
+        
+    }
+  }    
+    return 0;
+}
